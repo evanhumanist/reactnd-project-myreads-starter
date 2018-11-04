@@ -15,6 +15,7 @@ class Bookshelves extends Component {
                         <div className="bookshelf-books">
                             <ListBooks
                                 selectBooks={books.filter((book) => book.shelf === section.shelf )}
+                                updateShelf={this.props.updateShelf}
                             />
                             <div className="open-search">
                                 <Link to="/search">Add a book</Link>
