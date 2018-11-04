@@ -4,6 +4,7 @@ import './App.css'
 import SearchBooks from './SearchBooks'
 import PageHeader from './PageHeader'
 import Bookshelves from "./Bookshelves";
+import { Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -27,25 +28,21 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
   };
 
   render() {
     return (
       <div className="app">
         <PageHeader/>
-        {this.state.showSearchPage ? (
-            <SearchBooks></SearchBooks>
-        ) : (
+          <Route exact path="/" render={() => (
             <Bookshelves
                 sections={this.state.sections}
                 books={this.state.books}
-            >
-              <div className="open-search">
-                  <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-              </div>
-            </Bookshelves>
-        )}
+            />
+          )}/>
+           <Route path="/search" render={() => (
+            <SearchBooks />
+           )}/>
       </div>
     )
   }
