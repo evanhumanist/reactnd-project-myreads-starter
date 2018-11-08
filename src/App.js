@@ -61,7 +61,6 @@ class BooksApp extends Component {
         if (foundBook === false) {
             let addedBookArray = this.state.books.slice();
             addedBookArray.push(incomingBook);
-            console.log(addedBookArray, 'hello');
             this.setState({books: addedBookArray});
         }
 
