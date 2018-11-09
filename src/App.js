@@ -3,7 +3,7 @@ import './App.css'
 import SearchBooks from './SearchBooks'
 import PageHeader from './PageHeader'
 import Bookshelves from './Bookshelves'
-import { Route } from 'react-router-dom'
+import {Link, Route, Switch} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends Component {
@@ -71,22 +71,30 @@ class BooksApp extends Component {
         return (
             <div className="app">
                 <PageHeader/>
-                <Route exact path="/" render={() => (
-                    <Bookshelves
-                        sections={this.state.sections}
-                        books={this.state.books}
-                        updateShelf={this.updateShelf}
-                    />
-                )}/>
-                <Route path="/search" render={() => (
-                    <SearchBooks
-                        searchBooks={this.state.searchBooks}
-                        books={this.state.books}
-                        updateShelf={this.updateShelf}
-                        updateQuery={this.updateQuery}
-                        query={this.state.query}
-                    />
-                )}/>
+                <Switch>
+                    <Route exact path="/" render={() => (
+                        <Bookshelves
+                            sections={this.state.sections}
+                            books={this.state.books}
+                            updateShelf={this.updateShelf}
+                        />
+                    )}/>
+                    <Route path="/search" render={() => (
+                        <SearchBooks
+                            searchBooks={this.state.searchBooks}
+                            books={this.state.books}
+                            updateShelf={this.updateShelf}
+                            updateQuery={this.updateQuery}
+                            query={this.state.query}
+                        />
+                    )}/>
+                    <Route render={() => (
+                        <div className="unmatched-page">
+                            <h2>404, oops, you found something you shouldn't have!</h2>
+                            <Link to="/">Go Home</Link>
+                        </div>
+                    )}/>
+                </Switch>
             </div>
         )
     }

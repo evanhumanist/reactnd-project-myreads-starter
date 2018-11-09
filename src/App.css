@@ -10,6 +10,10 @@ body {
 
 /* main page */
 
+.unmatched-page {
+  text-align: center;
+}
+
 .list-books-title {
   padding: 10px 0;
   background: #2e7c31;
